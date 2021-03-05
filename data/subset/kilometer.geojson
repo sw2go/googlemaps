@@ -1,0 +1,16 @@
+{
+"type": "FeatureCollection",
+"name": "yy",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "mifcode": "xka_mrk_836", "streckennu": 4880, "richtung": "0", "km_i": 101500000, "km_l": "15,0 + 0" }, "geometry": { "type": "Point", "coordinates": [ 8.606854, 48.443363, 0.0 ] } },
+{ "type": "Feature", "properties": { "mifcode": "xka_mrk_836", "streckennu": 4880, "richtung": "0", "km_i": 101600000, "km_l": "16,0 + 0" }, "geometry": { "type": "Point", "coordinates": [ 8.593606, 48.443889, 0.0 ] } },
+{ "type": "Feature", "properties": { "mifcode": "xka_mrk_836", "streckennu": 4880, "richtung": "0", "km_i": 101400000, "km_l": "14,0 + 0" }, "geometry": { "type": "Point", "coordinates": [ 8.619532, 48.446279, 0.0 ] } },
+{ "type": "Feature", "properties": { "mifcode": "xka_mrk_836", "streckennu": 4880, "richtung": "0", "km_i": 101300000, "km_l": "13,0 + 0" }, "geometry": { "type": "Point", "coordinates": [ 8.630644, 48.451345, 0.0 ] } },
+{ "type": "Feature", "properties": { "mifcode": "xka_mrk_836", "streckennu": 4880, "richtung": "0", "km_i": 101700000, "km_l": "17,0 + 0" }, "geometry": { "type": "Point", "coordinates": [ 8.580265, 48.443891, 0.0 ] } },
+{ "type": "Feature", "properties": { "mifcode": "xka_mrk_836", "streckennu": 4880, "richtung": "0", "km_i": 101200000, "km_l": "12,0 + 0" }, "geometry": { "type": "Point", "coordinates": [ 8.641096, 48.457006, 0.0 ] } },
+{ "type": "Feature", "properties": { "mifcode": "xka_mrk_836", "streckennu": 4880, "richtung": "0", "km_i": 101800000, "km_l": "18,0 + 0" }, "geometry": { "type": "Point", "coordinates": [ 8.567086, 48.445372, 0.0 ] } },
+{ "type": "Feature", "properties": { "mifcode": "xka_mrk_836", "streckennu": 4880, "richtung": "0", "km_i": 101100000, "km_l": "11,0 + 0" }, "geometry": { "type": "Point", "coordinates": [ 8.647832, 48.464432, 0.0 ] } },
+{ "type": "Feature", "properties": { "mifcode": "xka_mrk_836", "streckennu": 4880, "richtung": "0", "km_i": 101900000, "km_l": "19,0 + 0" }, "geometry": { "type": "Point", "coordinates": [ 8.555432, 48.44987, 0.0 ] } }
+]
+}

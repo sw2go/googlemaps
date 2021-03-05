@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="UTF-8">
+  <head>
+    <title>SE</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="./index.js"></script>	
+  </head>  
+  <body>	
+	<div id="map"></div>
+	
+	<div id="cmd">
+		<div class="nav-toggle expanded">...</div>
+		<nav class="nav expanded">
+			<div class="field" id="init">						
+				<input class="cmd" id="apikey">
+				<button class="cmd" onclick="addScript( document.getElementById('apikey').value, 'init' );">ApiKey setzen</button>
+			</div>			
+			<div class="field">
+				<label for="action">Bei Kartenklick:</label>
+				<select class="cmd" name="action" id="action">
+					<option value="KO" >Koordinaten anzeigen</option>
+					<option value="ZT" path="0" rotation="0"  scale="15" strokeWeight="2" strokeColor="white"   fillColor="lime" title="Zentrale" >Zentrale hinzufügen</option>
+					<option value="EA" path="3" rotation="0"  scale="7"  strokeWeight="2"  strokeColor="white"  fillColor="lime" title="Schalter" >Schalter hinzufügen</option>
+					<option value="WM" path="4" rotation="90" scale="7"  strokeWeight="2"  strokeColor="white" fillColor="lime"  title="Warnmittel" >Warnmittel hinzufügen</option>
+				</select>
+			</div>
+			<div class="field">
+				<label for="action">Daten dazuladen:</label>
+				<select class="cmd" name="load" id="load" onchange="load( document.getElementById('load').item(document.getElementById('load').selectedIndex).getAttribute('path') ); document.getElementById('load').selectedIndex=0;">
+					<option path="" selected="selected">...</option>
+					<option path="data/subset/strecken.geojson" >Strecken</option>
+					<option path="data/subset/kilometer.geojson" >Kilometer</option>
+					<option path="data/2020qgis/strecken.geojson" >Alle Strecken</option>
+					<option path="data/2020qgis/kilometer.geojson" >Alle Kilometer</option>
+				</select>
+			</div>
+			<div class="field">
+				<label for="status">Gerätestatus:</label>
+				<button id=status" class="cmd" onclick="toggleColor()">Wechseln</button>
+			</div>
+		</nav>
+	</div>
+	<script src="./navtoggler.js"></script>
+  </body>
+</html>
