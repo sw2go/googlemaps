@@ -29,7 +29,16 @@
 				</select>
 			</div>
 			<div class="field">
-				<label for="action">Daten dazuladen:</label>
+				<label for="place">Gehe zu Ort:</label>
+				<select class="cmd" name="place" id="place" onchange="panToOption( document.getElementById('place').item(document.getElementById('place').selectedIndex) ); document.getElementById('place').selectedIndex=0;">
+					<option typ="none" selected="selected">...</option>
+					<option typ="home"  zoom="14" >Mein Standort</option>
+					<option typ="coord" lat="50.92232218474103" lng="10.039501460318808" zoom="6" >Deutschland</option>
+					<option typ="coord" lat="48.44549975058353" lng="8.612035850681368"  zoom="16" >Baustelle</option>					
+				</select>
+			</div>
+			<div class="field">
+				<label for="load">Daten dazuladen:</label>
 				<select class="cmd" name="load" id="load" onchange="load( document.getElementById('load').item(document.getElementById('load').selectedIndex).getAttribute('path') ); document.getElementById('load').selectedIndex=0;">
 					<option path="" selected="selected">...</option>
 					<option path="data/subset/strecken.geojson" >Strecken</option>

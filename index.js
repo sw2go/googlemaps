@@ -1,37 +1,38 @@
-const center = { lat: 48.44658162815497, lng: 8.611278804068808 };
-let pos;
+const posStart =     { lat: 47.24918511058598, lng: 7.96714970547165  };
+const posBaustelle = { lat: 48.44549975058353, lng: 8.612035850681368 }; //{ lat: 48.44658162815497, lng: 8.611278804068808 };
 let map;
 let infoWindow;
 let markers = new Map();
+
+
+function initInfoWindow() {
+	// Falls bereits vorhanden Info-Fenster schliessen
+	if(infoWindow) {
+      infoWindow.close();
+	  infowindow = null;
+	}
+	infoWindow = new google.maps.InfoWindow();	
+}
 
 function initMap() { 
 
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 14,
-    center: center,
+    center: posStart,
   });
   
   // Klick auf Karte
   map.addListener("click", (mapsMouseEvent) => {
 
-    // Info-Fenster schliessen
-	if(infoWindow) {
-      infoWindow.close();
-	  infowindow = null;
-	}  
-  
-	pos = mapsMouseEvent.latLng;  
+   
 	
 	// Aktionen aus dem DropDown
 	let options = document.getElementById("action").options;
 	  
     if (options.selectedIndex === 0) {
-		
-		// Info-Fenster
-		infoWindow = new google.maps.InfoWindow({
-		  position: mapsMouseEvent.latLng,
-		}); 
-		
+				
+		initInfoWindow();		
+		infoWindow.setPosition(mapsMouseEvent.latLng);		
 		infoWindow.setContent("<p>" + JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2) + "</p>" );
 		infoWindow.open(map);
 		
@@ -44,7 +45,7 @@ function initMap() {
 
   // Default Marker: Zentrum der "Baustelle"
   new google.maps.Marker({
-    position: center,
+    position: posBaustelle,
     title:"Baustelle",
 	map,
 	icon: { 
@@ -76,6 +77,68 @@ function initMap() {
 	});
 	
 }
+
+
+function panToOption(option) {
+	
+	switch(option.getAttribute('typ')) {
+		
+	  case "coord":
+		panToLocation( parseFloat(option.getAttribute('lat')), parseFloat(option.getAttribute('lng')), parseInt(option.getAttribute('zoom')), option.text  );		
+		break;
+		
+	  case "home":
+		panToMyLocation( parseInt(option.getAttribute('zoom')), option.text );
+		break;
+
+	  default:
+		break;
+		
+	}	
+}
+
+
+function panToLocation(lat, lng, zoom, text) {
+	const pos = {
+	  lat: lat,
+	  lng: lng,
+	};
+
+	initInfoWindow();
+	
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(text);
+    infoWindow.open(map);
+	map.setZoom(zoom);
+    map.setCenter(pos);		
+}
+
+function panToMyLocation(zoom, text) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+		  panToLocation(position.coords.latitude, position.coords.longitude, zoom, text );
+        },
+        () => {
+          panToMyLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+      panToMyLocationError(false, infoWindow, map.getCenter());
+    }
+}
+
+function panToMyLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+  infoWindow.open(map);
+}
+
 
 function load(path) {
 	if (path != "") {
