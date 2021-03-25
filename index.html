@@ -23,9 +23,9 @@
 				<label for="action">Bei Kartenklick:</label>
 				<select class="cmd" name="action" id="action">
 					<option value="KO" >Koordinaten anzeigen</option>
-					<option value="ZT" path="0" rotation="0"  scale="15" strokeWeight="2" strokeColor="white"   fillColor="lime" title="Zentrale" >Zentrale hinzufügen</option>
-					<option value="EA" path="3" rotation="0"  scale="7"  strokeWeight="2"  strokeColor="white"  fillColor="lime" title="Schalter" >Schalter hinzufügen</option>
-					<option value="WM" path="4" rotation="90" scale="7"  strokeWeight="2"  strokeColor="white" fillColor="lime"  title="Warnmittel" >Warnmittel hinzufügen</option>
+					<option value="ZT" path="0" rotation="0"  scale="15" strokeWeight="2" strokeColor="white" fillColor="lime" title="Zentrale" >Zentrale hinzufügen</option>
+					<option value="EA" path="3" rotation="0"  scale="7"  strokeWeight="2" strokeColor="white" fillColor="lime" title="Schalter" >Schalter hinzufügen</option>
+					<option value="WM" path="4" rotation="90" scale="7"  strokeWeight="2" strokeColor="white" fillColor="lime" title="Warnmittel" >Warnmittel hinzufügen</option>
 				</select>
 			</div>
 			<div class="field">
@@ -39,7 +39,7 @@
 			</div>
 			<div class="field">
 				<label for="load">Daten dazuladen:</label>
-				<select class="cmd" name="load" id="load" onchange="load( document.getElementById('load').item(document.getElementById('load').selectedIndex).getAttribute('path') ); document.getElementById('load').selectedIndex=0;">
+				<select class="cmd" name="load" id="load" onchange="loadData( document.getElementById('load').item(document.getElementById('load').selectedIndex).getAttribute('path') ); document.getElementById('load').selectedIndex=0;">
 					<option path="" selected="selected">...</option>
 					<option path="data/subset/strecken.geojson" >Strecken</option>
 					<option path="data/subset/kilometer.geojson" >Kilometer</option>

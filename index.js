@@ -4,15 +4,18 @@ let map;
 let infoWindow;
 let markers = new Map();
 
-
-function initInfoWindow() {
+function displayInfo(latLng, html) {
 	// Falls bereits vorhanden Info-Fenster schliessen
 	if(infoWindow) {
       infoWindow.close();
 	  infowindow = null;
 	}
-	infoWindow = new google.maps.InfoWindow();	
+	infoWindow = new google.maps.InfoWindow();		
+	infoWindow.setPosition(latLng);		
+	infoWindow.setContent(html);
+	infoWindow.open(map);
 }
+
 
 function initMap() { 
 
@@ -24,22 +27,13 @@ function initMap() {
   // Klick auf Karte
   map.addListener("click", (mapsMouseEvent) => {
 
-   
-	
 	// Aktionen aus dem DropDown
 	let options = document.getElementById("action").options;
 	  
-    if (options.selectedIndex === 0) {
-				
-		initInfoWindow();		
-		infoWindow.setPosition(mapsMouseEvent.latLng);		
-		infoWindow.setContent("<p>" + JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2) + "</p>" );
-		infoWindow.open(map);
-		
-	} else {
-		
-		addMarker(options.item(options.selectedIndex), mapsMouseEvent.latLng, "lime");
-		
+    if (options.selectedIndex === 0) {	
+		displayInfo(mapsMouseEvent.latLng, "lat='" + mapsMouseEvent.latLng.lat() + "' lng='" + mapsMouseEvent.latLng.lng() + "'");		
+	} else {		
+		addMarker(options.item(options.selectedIndex), mapsMouseEvent.latLng, "lime");		
 	}
   });
 
@@ -76,6 +70,16 @@ function initMap() {
 		}
 	});
 	
+	// Click auf dazugeladene Daten
+	map.data.addListener('click', function (event) {
+		let html = '';
+		for (let item of Object.entries(event.feature.i)) {
+			html += item[0] + ": " + item[1] + "<br>" // output: properties key/value 			
+		}		
+		displayInfo(event.latLng, html);
+	});
+
+
 }
 
 
@@ -103,12 +107,7 @@ function panToLocation(lat, lng, zoom, text) {
 	  lat: lat,
 	  lng: lng,
 	};
-
-	initInfoWindow();
-	
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(text);
-    infoWindow.open(map);
+	displayInfo(pos, text);
 	map.setZoom(zoom);
     map.setCenter(pos);		
 }
@@ -120,27 +119,17 @@ function panToMyLocation(zoom, text) {
 		  panToLocation(position.coords.latitude, position.coords.longitude, zoom, text );
         },
         () => {
-          panToMyLocationError(true, infoWindow, map.getCenter());
+		  displayInfo(map.getCenter(), "Error: The Geolocation service failed.");
         }
       );
     } else {
       // Browser doesn't support Geolocation
-      panToMyLocationError(false, infoWindow, map.getCenter());
+	  displayInfo(map.getCenter(), "Error: Your browser doesn't support geolocation.");
     }
 }
 
-function panToMyLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation."
-  );
-  infoWindow.open(map);
-}
 
-
-function load(path) {
+function loadData(path) {
 	if (path != "") {
 		map.data.loadGeoJson(path);	
 	}	
@@ -192,7 +181,7 @@ function toggleMarkerColor(value) {
 
 function addScript(apiKey, removeElementId) {
 	
-	// Create the google maps api url with api-key dynmaically
+	// Create the google maps api url with api-key dynamically
 	var script = document.createElement("SCRIPT");
 	script.src = "https://maps.googleapis.com/maps/api/js?key=" + apiKey + "&callback=initMap&libraries=&v=weekly";
 	script.async = true;

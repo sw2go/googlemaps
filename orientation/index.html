@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
   <meta charset="UTF-8">
+  <head>
+    <title>SE</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
   <body>
     <canvas id="myCanvas" width="360" height="450" style="border:1px solid #d3d3d3;">
     </canvas>
-    <script>
+	<script>
       function deviceOrientationListener(event) {
         var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
@@ -36,5 +40,11 @@
         alert("Sorry, your browser doesn't support Device Orientation");
       }
     </script>
-  </body>
+  </body>  
+  
+  
+  
+  
+  
+
 </html>
