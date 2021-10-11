@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <head>
+    <title>SE</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <button onclick="onClick()">Click me</button>
+    <p id="log"></p>
+	<p id="lat"></p>
+	<p id="lng"></p>
+	<p id="compass"></p>
+	<p id="alpha"></p>
+	<p id="beta"></p>
+	<p id="gamma"></p>
+	<p id="accx"></p>
+	<p id="accy"></p>
+	<p id="accz"></p>
+	<p id="rotx"></p>
+	<p id="roty"></p>
+	<p id="rotz"></p>
+
+	
+	<script>
+		function onClick(){
+		
+			if (window.DeviceOrientationEvent) {
+				if (typeof window.DeviceMotionEvent["requestPermission"] === 'function') {
+					// iOS
+					window.DeviceOrientationEvent["requestPermission"]().then(response => {
+						if (response === 'granted') {
+							window.addEventListener('deviceorientation', orientationHandler, true);
+						}
+					}).catch();
+            } else {
+                window.addEventListener('deviceorientationabsolute', orientationHandler, true);
+            }
+		}
+		
+		// Handlers for data
+		
+		function orientationHandler(event) {
+			console.log(event);
+			let alpha: number = undefined;
+			if (event.webkitCompassHeading) {
+				alpha = (360 - event.webkitCompassHeading);
+			} else if (event.absolute === true && event.alpha !== null) {
+				alpha = event.alpha;
+			}
+
+			if (alpha && !deviceOrientationEnabled) {
+				deviceOrientationEnabled = true;
+			}
+			if (alpha) {
+				document.getElementById('compass').innerHTML = "compass " + alpha;
+			}
+		}
+		
+		deviceOrientationEnabled = false;
+		
+		
+		
+	</script>
+  </body>
+</html>
