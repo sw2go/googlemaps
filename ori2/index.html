@@ -23,7 +23,7 @@
 
 	
 	<script>
-		function onClick(){
+		function onClick() {
 		
 			if (window.DeviceOrientationEvent) {
 				if (typeof window.DeviceMotionEvent["requestPermission"] === 'function') {
@@ -33,9 +33,10 @@
 							window.addEventListener('deviceorientation', orientationHandler, true);
 						}
 					}).catch();
-            } else {
-                window.addEventListener('deviceorientationabsolute', orientationHandler, true);
-            }
+				} else {
+					window.addEventListener('deviceorientationabsolute', orientationHandler, true);
+				}
+			}
 		}
 		
 		// Handlers for data
