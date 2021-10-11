@@ -89,7 +89,7 @@
 		function OrientationHandler(eventData){
 
 			if (event.webkitCompassHeading) {
-				document.getElementById('compass').innerHTML = "compass " + event.webkitCompassHeading;
+				document.getElementById('compass').innerHTML = "compass " + (360 - event.webkitCompassHeading);
 			} else {
 				document.getElementById('compass').innerHTML = "absolute " + event.absolute;
 			}
