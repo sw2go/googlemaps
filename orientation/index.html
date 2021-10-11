@@ -6,55 +6,52 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <canvas id="myCanvas" width="360" height="450" style="border:1px solid #d3d3d3;">
-    </canvas>
+	<p id="alpha">alpha</p>
+	<p id="beta"></p>
+	<p id="gamma"></p>
+	<p id="log"></p>
 	<script>
       function deviceOrientationListener(event) {
+	  
+	    console.log(event);
+		
+		document.getElementById("log").innerHTML = document.getElementById("log").innerHTML + " " + ", event";
 	  
 		// webkit... (for iOS)
 		var alpha = (event.webkitCompassHeading) ? event.webkitCompassHeading : event.alpha;
 		var beta = event.beta;
 		var gamma = event.gamma;
 	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-        var c = document.getElementById("myCanvas");
-        var ctx = c.getContext("2d");
-
-        ctx.clearRect(0, 0, c.width, c.height);
-        ctx.fillStyle = "#FF7777";
-        ctx.font = "14px Verdana";
-        ctx.fillText("Alpha: " + Math.round(alpha), 10, 20);
-        ctx.beginPath();
-        ctx.moveTo(180, 75);
-        ctx.lineTo(210, 75);
-        ctx.arc(180, 75, 60, 0, alpha * Math.PI / 180);
-        ctx.fill();
-
-        ctx.fillStyle = "#FF6600";
-        ctx.fillText("Beta: " + Math.round(beta), 10, 140);
-        ctx.beginPath();
-        ctx.fillRect(180, 150, beta, 90);
-
-        ctx.fillStyle = "#FF0000";
-        ctx.fillText("Gamma: " + Math.round(gamma), 10, 270);
-        ctx.beginPath();
-        ctx.fillRect(90, 340, 180, gamma);
+		var eAlpha = document.getElementById("alpha");
+		var eBeta = document.getElementById("beta");
+		var eGamma = document.getElementById("gamma");
+		console.log(alpha);
+		console.log(beta);
+		console.log(gamma);
+	 
+		if (alpha) {
+			eAlpha.innerHTML = "alpha: " + alpha.ToString();
+		} else {
+			eAlpha.innerHTML = "alpha: null";
+		}
+	
+		if (beta) {
+			eBeta.innerHTML = "beta: " + beta.ToString();
+		} else {
+			eBeta.innerHTML = "beta: null";
+		}
+	 
+		if (gamma) {
+			eGamma.innerHTML = "gamma: " + gamma.ToString();
+		} else {
+			eGamma.innerHTML = "gamma: null";
+		}
+	
       }
 
       if (window.DeviceOrientationEvent) {
         window.addEventListener("deviceorientation", deviceOrientationListener);
+		document.getElementById("log").innerHTML = document.getElementById("log").innerHTML + " " + "wired";
       } else {
         alert("Sorry, your browser doesn't support Device Orientation");
       }
