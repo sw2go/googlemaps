@@ -18,9 +18,15 @@
 		document.getElementById("log").innerHTML = document.getElementById("log").innerHTML + " " + ", event";
 	  
 		// webkit... (for iOS)
-		var alpha = (event.webkitCompassHeading) ? event.webkitCompassHeading : event.alpha;
-		var beta = event.beta;
-		var gamma = event.gamma;
+		var alpha = null;
+		var beta = null;
+		var gamma = null;
+	  
+		if ((event.webkitCompassHeading) {
+			alpha = event.webkitCompassHeading;
+		} else {
+			alpha = event.alpha;
+		}
 	  
 		var eAlpha = document.getElementById("alpha");
 		var eBeta = document.getElementById("beta");
