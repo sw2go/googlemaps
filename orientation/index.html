@@ -54,13 +54,49 @@
 		}
 	
       }
+	  
+	  	  function requestDeviceOrientation () {
+		  if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+		  DeviceOrientationEvent.requestPermission()
+		  .then(permissionState => {
+		  if (permissionState === 'granted') {
+			window.addEventListener("deviceorientation", deviceOrientationListener);
+			document.getElementById("log").innerHTML = document.getElementById("log").innerHTML + " " + "iOS wired";
+		  }
+		  })
+		  .catch(console.error);
+		  } else {
+		  // handle regular non iOS 13+ devices
+		  console.log ("not iOS");
+		  
+		        if (window.DeviceOrientationEvent) {
+					window.addEventListener("deviceorientation", deviceOrientationListener);
+					document.getElementById("log").innerHTML = document.getElementById("log").innerHTML + " " + "non iOS wired";
+				  } else {
+					alert("Sorry, your browser doesn't support Device Orientation");
+				  }
+		  }
+		}
+		
+		
+	  
+	  
+	  requestDeviceOrientation();
+	  
 
-      if (window.DeviceOrientationEvent) {
-        window.addEventListener("deviceorientation", deviceOrientationListener);
-		document.getElementById("log").innerHTML = document.getElementById("log").innerHTML + " " + "wired";
-      } else {
-        alert("Sorry, your browser doesn't support Device Orientation");
-      }
+
+	  
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
     </script>
   </body>  
   
