@@ -8,6 +8,8 @@
   <body>
     <button onclick="onClick()">Click me</button>
     <p id="log"></p>
+	<p id="lat"></p>
+	<p id="lng"></p>
 	<p id="compass"></p>
 	<p id="alpha"></p>
 	<p id="beta"></p>
@@ -25,6 +27,27 @@
 		
 			lg = document.getElementById('log');      
 			lg.innerHTML = "Starting :";
+			
+			if (navigator.geolocation) {
+			  navigator.geolocation.watchPosition((position) => {
+				  document.getElementById("lat").innerText = "lat " + position.coords.latitude;
+				  document.getElementById("lng").innerText = "lng " + position.coords.longitude;
+				},
+				() => {
+				  document.getElementById("lat").innerText = "lat failed";
+				  document.getElementById("lng").innerText = "lng failed";
+				}
+			  );
+			} else {
+			  // Browser doesn't support Geolocation
+			  document.getElementById("lat").innerText = "lat not supported";
+			  document.getElementById("lng").innerText = "lng not supported";
+			}
+			
+			
+			
+			
+			
 					
 			if (typeof DeviceMotionEvent.requestPermission === 'function') {
 				
