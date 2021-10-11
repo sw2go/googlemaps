@@ -43,7 +43,7 @@
 		
 		function orientationHandler(event) {
 			console.log(event);
-			let alpha: number = undefined;
+			var alpha = undefined;
 			if (event.webkitCompassHeading) {
 				alpha = (360 - event.webkitCompassHeading);
 			} else if (event.absolute === true && event.alpha !== null) {
