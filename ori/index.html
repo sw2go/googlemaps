@@ -43,12 +43,7 @@
 			  document.getElementById("lat").innerText = "lat not supported";
 			  document.getElementById("lng").innerText = "lng not supported";
 			}
-			
-			
-			
-			
-			
-					
+				
 			if (typeof DeviceMotionEvent.requestPermission === 'function') {
 				
 				// for IOS devices
@@ -82,7 +77,7 @@
 				document.getElementById("log").innerText = "NonIOS! ";
 				
 				// get device orientation sensor data
-				window.addEventListener('deviceorientation', OrientationHandler, true);
+				window.addEventListener('deviceorientationabsolute', OrientationHandler, true);
 				// get accelerometer data
 				window.addEventListener('devicemotion', MotionHandler, true);
 			}
