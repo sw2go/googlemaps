@@ -48,6 +48,7 @@
 				
 				// get device orientation sensor data
 				DeviceOrientationEvent.requestPermission().then(response => {
+					log(response);
 					if (response === 'granted') {
 					    log("Orientation granted");
 						window.addEventListener('deviceorientation', OrientationHandler, true);
