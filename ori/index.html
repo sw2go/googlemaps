@@ -25,7 +25,7 @@
 	<script>
 		function onClick(){
 		
-			document.getElementById('log').innerText = "start ";
+			log('start');
 			
 			if (navigator.geolocation) {
 			  navigator.geolocation.watchPosition((position) => {
@@ -46,7 +46,7 @@
 			if (typeof DeviceMotionEvent.requestPermission === 'function') {
 				
 				// for IOS devices
-				document.getElementById("log").innerText += "Is IOS! ";
+				log('is iOS');
 				
 				// get device orientation sensor data
 				DeviceOrientationEvent.requestPermission().then(response => {
@@ -116,6 +116,10 @@
 			document.getElementById('rotx').innerHTML = "rotx " + eventData.rotationRate.alpha;
 			document.getElementById('roty').innerHTML = "roty " + eventData.rotationRate.beta;
 			document.getElementById('rotz').innerHTML = "rotz " + eventData.rotationRate.gamma;
+		}
+		
+		function log(msg) {
+			document.getElementById('log').innerHTML += (" " + msg)
 		}
 		
 		onClick();
