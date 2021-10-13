@@ -25,7 +25,7 @@
 	<script>
 		function start(text){
 		
-			log(text);
+			log('start ' + text);
 			
 			if (navigator.geolocation) {
 			  navigator.geolocation.watchPosition((position) => {
@@ -117,7 +117,7 @@
 		}
 		
 		function log(msg) {
-			document.getElementById('log').innerText += (" " + msg + " ")
+			document.getElementById('log').innerText += (" " + msg + ", ")
 		}
 		
 		start('auto');
