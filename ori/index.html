@@ -38,9 +38,7 @@
 				}
 			  );
 			} else {
-			  // Browser doesn't support Geolocation
-			  document.getElementById("lat").innerText = "lat not supported";
-			  document.getElementById("lng").innerText = "lng not supported";
+			  log('no geolocation');
 			}
 				
 			if (typeof DeviceMotionEvent.requestPermission === 'function') {
@@ -51,31 +49,31 @@
 				// get device orientation sensor data
 				DeviceOrientationEvent.requestPermission().then(response => {
 					if (response === 'granted') {
-					    document.getElementById("log").innerText += "Orientation granted ";
+					    log("Orientation granted");
 						window.addEventListener('deviceorientation', OrientationHandler, true);
 					}else if (response.state === 'prompt') {
-						document.getElementById("log").innerText += "Orientation Need prompt! ";
+						log("Orientation Need prompt!");
 					}else{
-						document.getElementById("log").innerText += "Orientation Not Supported! ";
+						log("Orientation Not Supported!");
 					}
 				}).catch(console.error)
 				
 				// get accelerometer data
 				DeviceMotionEvent.requestPermission().then(response => {
 					if (response === 'granted') {
-					    document.getElementById("log").innerText += "Motion granted ";
+					    log("Motion granted ");
 						window.addEventListener('devicemotion', MotionHandler, true);
 					}else if (result.state === 'prompt') {
-						document.getElementById("log").innerText += "Motion Need prompt! ";
+						log("Motion Need prompt!");
 					}else{
-						document.getElementById("log").innerText += "Motion Not Supported! ";
+						log("Motion Not Supported!");
 					}
 				}).catch(console.error)
 				
 			} else {
 				
 				// for non ios devices
-				document.getElementById("log").innerText += "Not IOS! ";
+				log("Not IOS! ");
 				
 				// get device orientation sensor data
 				window.addEventListener('deviceorientationabsolute', OrientationHandler, true);
