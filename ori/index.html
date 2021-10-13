@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <button onclick="onClick()">Click me</button>
+    <button onclick="start('manu')">Click me</button>
     <p id="log"></p>
 	<p id="lat"></p>
 	<p id="lng"></p>
@@ -23,9 +23,9 @@
 
 	
 	<script>
-		function onClick(){
+		function onClick(text){
 		
-			log('start');
+			log('start ' + text);
 			
 			if (navigator.geolocation) {
 			  navigator.geolocation.watchPosition((position) => {
@@ -48,9 +48,8 @@
 				
 				// get device orientation sensor data
 				DeviceOrientationEvent.requestPermission().then(response => {
-					log(response);
+					log('Orientation ' + response);
 					if (response === 'granted') {
-					    log("Orientation granted");
 						window.addEventListener('deviceorientation', OrientationHandler, true);
 					}else if (response.state === 'prompt') {
 						log("Orientation Need prompt!");
@@ -69,7 +68,7 @@
 					}else{
 						log("Motion Not Supported!");
 					}
-				}).catch(console.error)
+				}).catch(log('error'))
 				
 			} else {
 				
@@ -121,7 +120,7 @@
 			document.getElementById('log').innerText += (" " + msg + " ")
 		}
 		
-		onClick();
+		start('auto');
 	</script>
   </body>
 </html>
