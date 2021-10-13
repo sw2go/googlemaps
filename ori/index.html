@@ -59,12 +59,8 @@
 					log('Motion ' + response);
 					if (response === 'granted') {
 						window.addEventListener('devicemotion', MotionHandler, true);
-					}else if (result.state === 'prompt') {
-						log("Motion Need prompt!");
-					}else{
-						log("Motion Not Supported!");
 					}
-				}).catch(log('error'))
+				}).catch((e) => log(e))
 				
 			} else {
 				
