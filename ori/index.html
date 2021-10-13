@@ -44,7 +44,7 @@
 			if (typeof DeviceMotionEvent.requestPermission === 'function') {
 				
 				// for IOS devices
-				log('is iOS');
+				log('iOS-Device');
 				
 				// get device orientation sensor data
 				DeviceOrientationEvent.requestPermission().then(response => {
@@ -52,7 +52,7 @@
 					if (response === 'granted') {
 						window.addEventListener('deviceorientation', OrientationHandler, true);
 					}
-				}).catch(log('error'))
+				}).catch((e) => log(e))
 				
 				// get accelerometer data
 				DeviceMotionEvent.requestPermission().then(response => {
@@ -69,7 +69,7 @@
 			} else {
 				
 				// for non ios devices
-				log("Not IOS! ");
+				log("Normal-Device");
 				
 				// get device orientation sensor data
 				window.addEventListener('deviceorientationabsolute', OrientationHandler, true);
