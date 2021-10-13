@@ -51,17 +51,13 @@
 					log('Orientation ' + response);
 					if (response === 'granted') {
 						window.addEventListener('deviceorientation', OrientationHandler, true);
-					}else if (response.state === 'prompt') {
-						log("Orientation Need prompt!");
-					}else{
-						log("Orientation Not Supported!");
 					}
-				}).catch(console.error)
+				}).catch(log('error'))
 				
 				// get accelerometer data
 				DeviceMotionEvent.requestPermission().then(response => {
+					log('Motion ' + response);
 					if (response === 'granted') {
-					    log("Motion granted ");
 						window.addEventListener('devicemotion', MotionHandler, true);
 					}else if (result.state === 'prompt') {
 						log("Motion Need prompt!");
