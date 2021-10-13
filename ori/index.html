@@ -52,29 +52,31 @@
 				// get device orientation sensor data
 				DeviceOrientationEvent.requestPermission().then(response => {
 					if (response === 'granted') {
+					    document.getElementById("log").innerText = " Orientation granted ";
 						window.addEventListener('deviceorientation', OrientationHandler, true);
-					}else if (result.state === 'prompt') {
-						document.getElementById("log").innerText = "Need prompt!";
+					}else if (response.state === 'prompt') {
+						document.getElementById("log").innerText = "Orientation Need prompt! ";
 					}else{
-						document.getElementById("log").innerText += "Not Supported!";
+						document.getElementById("log").innerText += "Oritentation Not Supported! ";
 					}
 				}).catch(console.error)
 				
 				// get accelerometer data
 				DeviceMotionEvent.requestPermission().then(response => {
 					if (response === 'granted') {
+					    document.getElementById("log").innerText = " Motion granted ";
 						window.addEventListener('devicemotion', MotionHandler, true);
 					}else if (result.state === 'prompt') {
-						document.getElementById("log").innerText = "Need prompt!";
+						document.getElementById("log").innerText = "Motion Need prompt! ";
 					}else{
-						document.getElementById("log").innerText += "Not Supported!";
+						document.getElementById("log").innerText += "Motion Not Supported! ";
 					}
 				}).catch(console.error)
 				
 			} else {
 				
 				// for non ios devices
-				document.getElementById("log").innerText = "NonIOS! ";
+				document.getElementById("log").innerText = "Not IOS! ";
 				
 				// get device orientation sensor data
 				window.addEventListener('deviceorientationabsolute', OrientationHandler, true);
