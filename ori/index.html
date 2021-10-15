@@ -11,7 +11,8 @@
 	<p id="lat"></p>
 	<p id="lng"></p>
 	<p id="compass"></p>
-	<p id="alpha"></p>
+	<p id="alpha_abs"></p>
+	<p id="alpha_rel"></p>
 	<p id="beta"></p>
 	<p id="gamma"></p>
 	<p id="accx"></p>
@@ -69,6 +70,7 @@
 				
 				// get device orientation sensor data
 				window.addEventListener('deviceorientationabsolute', OrientationHandler, true);
+				window.addEventListener('deviceorientation', OrientationHandler, true);
 				// get accelerometer data
 				window.addEventListener('devicemotion', MotionHandler, true);
 			}
@@ -88,8 +90,12 @@
 			let kind = (event.absolute) ? '(abs) ' : '(rel) '; 
 			
 			// alpha is the compass direction the device is facing in degrees
-			document.getElementById('alpha').innerHTML = "alpha " + kind + eventData.alpha;
-		
+			if (event.absolute === true) {
+				document.getElementById('alpha_abs').innerHTML = "alpha (abs) " + eventData.alpha;
+			}			
+			if (event.absolute === false) {
+				document.getElementById('alpha_rel').innerHTML = "alpha (rel) " + eventData.alpha;
+		    }
 			// gamma is the left-to-right tilt in degrees
 			document.getElementById('gamma').innerHTML = "gamma " + eventData.gamma;
 
