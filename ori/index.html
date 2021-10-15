@@ -82,8 +82,13 @@
 			if (event.webkitCompassHeading) {
 				document.getElementById('compass').innerHTML = "compass " + (360 - event.webkitCompassHeading);
 			} else {
-				document.getElementById('compass').innerHTML = "absolute " + event.absolute;
+				document.getElementById('compass').innerHTML = "compass (na)";
 			}
+			
+			let kind = (event.absolute) ? '(abs) ' : '(rel) '; 
+			
+			// alpha is the compass direction the device is facing in degrees
+			document.getElementById('alpha').innerHTML = "alpha " + kind + eventData.alpha;
 		
 			// gamma is the left-to-right tilt in degrees
 			document.getElementById('gamma').innerHTML = "gamma " + eventData.gamma;
@@ -91,8 +96,7 @@
 			// beta is the front-to-back tilt in degrees
 			document.getElementById('beta').innerHTML = "beta " + eventData.beta;
 
-			// alpha is the compass direction the device is facing in degrees
-			document.getElementById('alpha').innerHTML = "alpha " + eventData.alpha;
+
 		}
 		
 		function MotionHandler(eventData){
