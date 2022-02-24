@@ -36,6 +36,10 @@ function initMap() {
 		addMarker(options.item(options.selectedIndex), mapsMouseEvent.latLng, "lime");		
 	}
   });
+  
+  map.addListener("contextmenu", (mapsMouseEvent) => {
+	contextMenuTest(mapsMouseEvent);
+  });
 
   // Default Marker: Zentrum der "Baustelle"
   new google.maps.Marker({
@@ -193,5 +197,20 @@ function addScript(apiKey, removeElementId) {
 	if (elem) {
 		elem.parentNode.removeChild(elem);
 	}
+
+}
+
+function contextMenuTest(event) {
+	console.log(event.prototype);
+	console.log(event);
+	alert(JSON.stringify(event));
+	
+	if (event.domEvent) {
+		event.stop();
+	} else {
+		event.preventDefault();
+	}
+	
+	
 
 }
