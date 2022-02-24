@@ -40,6 +40,10 @@ function initMap() {
   map.addListener("contextmenu", (mapsMouseEvent) => {
 	contextMenuTest(mapsMouseEvent);
   });
+  
+  map.addListener("bounds_changed", (mapsMouseEvent) => {
+	longTapStop();
+  });
 
   // Default Marker: Zentrum der "Baustelle"
   new google.maps.Marker({
@@ -211,6 +215,35 @@ function contextMenuTest(event) {
 	}
 }
 
+
+// LongTouch-Test
+
 function touchEvent(event) {
 	alert(JSON.stringify(event));
 }
+
+myTimer = null;
+function longTapStart(event) {
+	if (myTimer == null) {
+		myTimer = setTimeout(() => {
+			event.preventDefault();
+			longTapEvent(event);
+		}, 500);		
+	}
+}
+
+function longTapStop(event) {
+	if (myTimer) {
+		clearTimeout(myTimer);
+		myTimer = null;		
+	}
+}
+
+function longTapEvent(event) {
+	console.log("longOne");
+	alert("onLong");
+}
+
+
+
+
