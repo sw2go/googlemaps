@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./index.js"></script>	
   </head>  
-  <body>
+  <body> <!- ontouchstart ontouchend oder onmousedown onmouseup ->
 	<div ontouchstart="longTapStart(event)" ontouchend="longTapStop()"  style="display: flex; height: 100%; width: 100%" >
 	   <div id="map"></div>
 	</div>
@@ -52,7 +52,7 @@
 				<label for="status">Gerätestatus:</label>
 				<button id=status" class="cmd" onclick="toggleColor()">Wechseln</button>
 			</div>
-			<div class="field preventCallout" oncontextmenu="contextMenuTest(event)" ontouchmove="touchEvent(event)" >
+			<div id="log" class="field preventCallout" oncontextmenu="contextMenuTest(event)" ontouchmove="touchEvent(event)" >
 				Contextmenu Test
 			</div>
 		</nav>

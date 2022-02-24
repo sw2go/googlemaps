@@ -225,6 +225,7 @@ function touchEvent(event) {
 myTimer = null;
 function longTapStart(event) {
 	if (myTimer == null) {
+		log("start");
 		myTimer = setTimeout(() => {
 			event.preventDefault();
 			longTapEvent(event);
@@ -233,6 +234,7 @@ function longTapStart(event) {
 }
 
 function longTapStop(event) {
+	log("stop");
 	if (myTimer) {
 		clearTimeout(myTimer);
 		myTimer = null;		
@@ -240,8 +242,14 @@ function longTapStop(event) {
 }
 
 function longTapEvent(event) {
-	console.log("longOne");
-	alert("onLong");
+	log("longOne");
+}
+
+function log(data) {
+	var logger = document.getElementById("log");
+	logger.innerText += " " + data;
+	
+	
 }
 
 
