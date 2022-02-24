@@ -201,7 +201,6 @@ function addScript(apiKey, removeElementId) {
 }
 
 function contextMenuTest(event) {
-	console.log(event.prototype);
 	console.log(event);
 	alert(JSON.stringify(event));
 	
