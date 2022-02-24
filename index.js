@@ -209,7 +209,8 @@ function contextMenuTest(event) {
 	} else {
 		event.preventDefault();
 	}
-	
-	
+}
 
+function touchEvent(event) {
+	alert(JSON.stringify(event));
 }
