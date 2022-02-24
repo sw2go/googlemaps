@@ -67,6 +67,10 @@ body {
     -webkit-touch-callout: none;
 }
 
+html {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
 
 
 
